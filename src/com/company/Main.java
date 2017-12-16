@@ -6,6 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        final String NAME = "Name";
+        final String AGE = "Age";
+        final String CITY = "City";
+        final String HOBBIES = "Hobbies";
+
         String name, city, hobbies;
         int age;
         String chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM " +
@@ -23,7 +28,31 @@ public class Main {
         hobbies = answer("What you hobbies?");
 
         System.out.println();
+        String[] names = { NAME, AGE, CITY, HOBBIES };
+        String[] data = { name, "" + age, city, hobbies };
 
+        try {
+            System.out.println("\n");
+            Thread.sleep(1000);
+            System.out.println("1:");
+            Thread.sleep(1500);
+            printAsTable(names, data);
+
+            System.out.println("\n");
+            Thread.sleep(1000);
+            System.out.println("2:");
+            Thread.sleep(1500);
+            System.out.printf("Человек по имени %s живет в городе %s.\n" +
+                    "Этому человеку %d лет и любит он заниматься %s.", name, city, age, hobbies);
+
+            System.out.println("\n");
+            Thread.sleep(1000);
+            System.out.println("3:");
+            Thread.sleep(1500);
+            printTextFormat(names, data);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 /*
  *  method answer() asks and write restriction,
@@ -84,6 +113,43 @@ public class Main {
         System.out.println(ask);
         System.out.println(":>");
         return new Scanner(System.in).nextLine();
+    }
+
+    private static void printAsTable(String[] namesCol, String[] datas){
+//sets lohg of table
+        final int COUNT_COL = namesCol.length;
+        int lengthTable;
+        int lengthColum = 0;
+        int lengthDatas = 0;
+        for (int i = 0; i < COUNT_COL; i++) {
+            if (namesCol[i].length() > lengthColum) lengthColum = namesCol[i].length();
+            if (datas[i].length() > lengthDatas) lengthDatas = datas[i].length();
+        }
+        lengthTable = lengthColum + 2 + lengthDatas + 2;
+
+        for (int i = 0; i < COUNT_COL; i++) {
+            for (int j = 0; j < lengthTable+2; j++) {
+                System.out.print('-');
+            }
+            System.out.println();
+            System.out.print("| " + namesCol[i]);
+            for (int j = namesCol[i].length(); j < lengthColum; j++) {
+                System.out.print(' ');
+            }
+            System.out.print(" | " + datas[i]);
+            for (int j = datas[i].length(); j < lengthDatas+1; j++) {
+                System.out.print(' ');
+            }
+            System.out.println('|');
+        }
+        for (int j = 0; j < lengthTable+2; j++) {
+            System.out.print('-');
+        }
+    }
+    private static void printTextFormat(String[] namesCol, String[] data){
+        for (int i = 0; i < namesCol.length; i++) {
+            System.out.println(namesCol[i] + " - "+ data[i]);
+        }
     }
 
 }
