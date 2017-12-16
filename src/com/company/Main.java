@@ -22,7 +22,7 @@ public class Main {
             city = answer("Where are you from?",
                     "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
                                chars);
-        System.out.println(city);
+        System.out.println("city " + city);
     }
 /*
  *  method asks and write restriction,
