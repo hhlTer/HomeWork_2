@@ -6,27 +6,27 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        String name, city, hobies;
+        String name, city, hobbies;
         int age;
         String chars = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM " +
                 "йцукенгшщзхїфівапролджєячсмитьбюЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЄЯЧСМИТЬБЮ" +
                 "’-\'\"";
-            name = answer( "Enter you name",
-                     "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
-                                chars);
 
-        System.out.println(name);
-            age = answer("How old are you?",
-                    "Restriction: age must include only arabic digits and be biggest than 0");
+        name = answer( "Enter you name",
+                       "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
+                        chars);
+        age  = answer("How old are you?",
+                 "Restriction: age must include only arabic digits and be biggest than 0");
+        city = answer("Where are you from?",
+                      "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
+                        chars);
+        hobbies = answer("What you hobbies?");
 
-        System.out.println(age);
-            city = answer("Where are you from?",
-                    "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
-                               chars);
-        System.out.println("city " + city);
+        System.out.println();
+
     }
 /*
- *  method asks and write restriction,
+ *  method answer() asks and write restriction,
  *  array chars uses as mask, for checking entering symbols
  *
  *  метод запитує і виводить інформацію про обмеження вводу
@@ -53,6 +53,10 @@ public class Main {
         }
         return ans;
     }
+/*
+ *  reload answer():
+ *  return integer, checked format and currently enter (>0 & < 160(optimist))
+ */
     private static int answer(String ask, String restriction){
         System.out.println(ask);
         System.out.println(restriction);
@@ -61,9 +65,9 @@ public class Main {
         int ans;
         try {
             ans = new Scanner(System.in).nextInt();
-            if (ans < 0) throw new Exception();
+            if ((ans < 0)||(ans > 160)) throw new Exception();
         } catch (Exception e) {
-            System.out.println("Wrong format data!");
+            System.out.println("Wrong data!");
             try {
                 Thread.sleep(900);
             } catch (InterruptedException e1) {
@@ -73,4 +77,13 @@ public class Main {
         }
         return ans;
     }
+/*
+ *  reload answer() - entering data not have restrictions
+ */
+    private static String answer(String ask){
+        System.out.println(ask);
+        System.out.println(":>");
+        return new Scanner(System.in).nextLine();
+    }
+
 }
