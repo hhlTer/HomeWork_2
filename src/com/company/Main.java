@@ -18,6 +18,7 @@ public class Main {
         System.out.println(name);
             age = answer("How old are you?",
                     "Restriction: age must include only arabic digits and be biggest than 0");
+
         System.out.println(age);
             city = answer("Where are you from?",
                     "Restriction: name must include symbols of english or ukrainian alphabet, and not contains digits",
